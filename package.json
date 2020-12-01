@@ -1,12 +1,12 @@
 {
   "name": "servicenow-waker",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Wakes up servicenow instances using puppeteer",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Billy",
+  "author": "Praveen",
   "license": "ISC",
   "dependencies": {
     "node-notifier": "^6.0.0",
