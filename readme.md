@@ -1,9 +1,6 @@
 ## Servicenow Instance Waker
 ServiceNow instance waker is a script to wake up your ServiceNow instance using Puppeteer/headless chrome to automate the process.
 
-Currently it relies on having the "Wake instance" overlay on your instance's page. If this is not present, your instance is considered "online" and the script won't proceed:
-
-![Wake instance](https://i.imgur.com/oOXNPcm.png)
 
 ## Installation
 `git clone` this repository and cd into the working directory and run `npm i` to install the dependencies.
@@ -13,9 +10,20 @@ in `config.js` fill out the username and password in the JSON such as:
 
 ```
 module.exports = {
-  username: "MyUsername@username.com",
-  password: "MyPassword123"
-}
+	users : [
+	{
+		"username": "user1@example.com",
+		"password": "user1pass",
+		"notifications": true
+	},
+	{
+		"username": "user2@example.com",
+		"password": "user2pass",
+		"notifications": false
+	}
+	
+	]
+};
 ```
 
 ## Running
