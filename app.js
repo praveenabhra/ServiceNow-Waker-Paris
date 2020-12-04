@@ -58,7 +58,7 @@ async function run(user) {
 		return;
 	}
 	
-	await page.waitFor(10000);
+	await page.waitFor(20000);
 	const instanceBefore = await getInstanceDetails(page);
 	console.log(instanceBefore);
 	
