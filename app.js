@@ -61,7 +61,6 @@ async function run(user) {
 	await page.waitFor(20000);
 	const instanceBefore = await getInstanceDetails(page);
 	console.log(instanceBefore);
-	
 	try{
 		await page.evaluate(
 			() => {
@@ -118,12 +117,13 @@ async function getInstanceDetails(instancePage) {
   return Promise.resolve(
     await instancePage.evaluate(() => {
       var instanceDetail = document.querySelector("body > dps-app").shadowRoot.querySelector("div > main > dps-home-auth").shadowRoot.querySelector("div > div > div.instance-widget > dps-instance-sidebar").shadowRoot.querySelector("div > div.dps-instance-sidebar-content.dps-instance-sidebar-content-instance-info").innerText;
-      const instance = {
-        status: document.querySelector("body > dps-app").shadowRoot.querySelector("div > main > dps-home-auth").shadowRoot.querySelector("div > div > div.instance-widget > dps-instance-sidebar").shadowRoot.querySelector("div > div.dps-instance-sidebar-content.dps-instance-sidebar-content-instance-info > div.dps-instance-sidebar-content-row > div").innerText,
-        url: document.querySelector("body > dps-app").shadowRoot.querySelector("div > main > dps-home-auth").shadowRoot.querySelector("div > div > div.instance-widget > dps-instance-sidebar").shadowRoot.querySelector("div > div.dps-instance-sidebar-content.dps-instance-sidebar-content-instance-info > div:nth-child(2) > div:nth-child(1) > dps-link").innerText,
-        build: document.querySelector("body > dps-app").shadowRoot.querySelector("div > main > dps-home-auth").shadowRoot.querySelector("div > div > div.instance-widget > dps-instance-sidebar").shadowRoot.querySelector("div > div.dps-instance-sidebar-content.dps-instance-sidebar-content-instance-info > div:nth-child(2) > div:nth-child(2) > span").innerText,
-        timeRemaining: document.querySelector("body > dps-app").shadowRoot.querySelector("div > main > dps-home-auth").shadowRoot.querySelector("div > div > div.instance-widget > dps-instance-sidebar").shadowRoot.querySelector("div > div.dps-instance-sidebar-content.dps-instance-sidebar-content-instance-info > div:nth-child(2) > div:nth-child(3) > span").innerText
-      }; 
+      const instance = {};
+        instance.status = document.querySelector("body > dps-app").shadowRoot.querySelector("div > main > dps-home-auth").shadowRoot.querySelector("div > div > div.instance-widget > dps-instance-sidebar").shadowRoot.querySelector("div > div.dps-instance-sidebar-content.dps-instance-sidebar-content-instance-info > div.dps-instance-sidebar-content-row > div").innerText;
+		if(instance.status == ' Online'){
+			instance.url= document.querySelector("body > dps-app").shadowRoot.querySelector("div > main > dps-home-auth").shadowRoot.querySelector("div > div > div.instance-widget > dps-instance-sidebar").shadowRoot.querySelector("div > div.dps-instance-sidebar-content.dps-instance-sidebar-content-instance-info > div:nth-child(2) > div:nth-child(1) > dps-link").innerText;
+			instance.build= document.querySelector("body > dps-app").shadowRoot.querySelector("div > main > dps-home-auth").shadowRoot.querySelector("div > div > div.instance-widget > dps-instance-sidebar").shadowRoot.querySelector("div > div.dps-instance-sidebar-content.dps-instance-sidebar-content-instance-info > div:nth-child(2) > div:nth-child(2) > span").innerText;
+			instance.timeRemaining= document.querySelector("body > dps-app").shadowRoot.querySelector("div > main > dps-home-auth").shadowRoot.querySelector("div > div > div.instance-widget > dps-instance-sidebar").shadowRoot.querySelector("div > div.dps-instance-sidebar-content.dps-instance-sidebar-content-instance-info > div:nth-child(2) > div:nth-child(3) > span").innerText; 
+		}
 	  return instance;
     })
   );
